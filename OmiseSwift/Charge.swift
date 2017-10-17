@@ -276,6 +276,7 @@ public struct ChargeFilterParams: OmiseFilterParams {
     public var isCaptured: Bool?
     public var cardLastDigits: LastDigits?
     public var isCustomerPresent: Bool?
+    public var isRefunded: Bool?
     public var failureCode: ChargeFailure?
     
     private enum CodingKeys: String, CodingKey {
@@ -285,6 +286,7 @@ public struct ChargeFilterParams: OmiseFilterParams {
         case isCaptured = "captured"
         case cardLastDigits = "card_last_digits"
         case isCustomerPresent = "customer_present"
+        case isRefunded = "refunded"
         case failureCode = "failure_code"
     }
     
@@ -296,6 +298,7 @@ public struct ChargeFilterParams: OmiseFilterParams {
         isCaptured = try container.decodeIfPresent(Bool.self, forKey: .isCaptured)
         cardLastDigits = try container.decodeIfPresent(LastDigits.self, forKey: .cardLastDigits)
         isCustomerPresent = try container.decodeIfPresent(Bool.self, forKey: .isCustomerPresent)
+        isRefunded = try container.decodeIfPresent(Bool.self, forKey: .isRefunded)
         failureCode = try container.decodeIfPresent(ChargeFailure.self, forKey: .failureCode)
     }
     
@@ -307,6 +310,7 @@ public struct ChargeFilterParams: OmiseFilterParams {
         try container.encodeIfPresent(isCaptured, forKey: .isCaptured)
         try container.encodeIfPresent(cardLastDigits, forKey: .cardLastDigits)
         try container.encodeIfPresent(isCustomerPresent, forKey: .isCustomerPresent)
+        try container.encodeIfPresent(isRefunded, forKey: .isRefunded)
         try container.encodeIfPresent(failureCode, forKey: .failureCode)
     }
     
@@ -314,6 +318,7 @@ public struct ChargeFilterParams: OmiseFilterParams {
                 isAuthorized: Bool? = nil, isCaptured: Bool? = nil,
                 cardLastDigits: LastDigits? = nil,
                 isCustomerPresent: Bool? = nil,
+                isRefunded: Bool? = nil,
                 failureCode: ChargeFailure? = nil) {
         self.created = created
         self.amount = amount
@@ -321,6 +326,7 @@ public struct ChargeFilterParams: OmiseFilterParams {
         self.isCaptured = isCaptured
         self.cardLastDigits = cardLastDigits
         self.isCustomerPresent = isCustomerPresent
+        self.isRefunded = isRefunded
         self.failureCode = failureCode
     }
 }
